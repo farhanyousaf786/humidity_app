@@ -275,7 +275,7 @@ class _DashboardState extends State<Dashboard> {
           content:
               Text("Please turn on Your Mobile Data or Wifi & Restart the App"),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               onPressed: () => {SystemNavigator.pop()},
               child: Text("OK"),
             ),
@@ -287,12 +287,12 @@ class _DashboardState extends State<Dashboard> {
 
   ///***Alert dialogue***\\\
 
-  String neverShowAgain;
+  late String neverShowAgain;
 
   alertDialog() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    neverShowAgain = prefs.getString("neverShowAgain");
+    neverShowAgain = prefs.getString("neverShowAgain")!;
 
     if (neverShowAgain != null) {
       return Text("");
@@ -316,7 +316,7 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             actions: <Widget>[
-              FlatButton(
+              ElevatedButton(
                 onPressed: () => {
                   prefs.setString("neverShowAgain", "True"),
                   Navigator.pop(context),
@@ -326,7 +326,7 @@ class _DashboardState extends State<Dashboard> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              FlatButton(
+              ElevatedButton(
                 onPressed: () => {
                   Navigator.pop(context),
                 },
@@ -360,7 +360,7 @@ class _DashboardState extends State<Dashboard> {
   }
 
   // This is ad Area for Switch Shot Meme
-  BannerAd myBanner1;
+  late BannerAd myBanner1;
   bool isLoaded1 = false;
 
   void loadBannerAd() {
@@ -388,7 +388,7 @@ class _DashboardState extends State<Dashboard> {
       );
 
   // This is ad Area for Switch Shot Meme
-  InterstitialAd myInterAd1;
+  late InterstitialAd myInterAd1;
   bool isInterAdLoaded = false;
   int numberOfAttempts = 0;
 
@@ -402,7 +402,6 @@ class _DashboardState extends State<Dashboard> {
         numberOfAttempts = 0;
       }, onAdFailedToLoad: (LoadAdError error) {
         numberOfAttempts = numberOfAttempts + 1;
-        myInterAd1 = null;
 
         if (numberOfAttempts <= 2) {
           createInterAds();
@@ -425,11 +424,9 @@ class _DashboardState extends State<Dashboard> {
         createInterAds();
       });
       myInterAd1.show();
-      myInterAd1 = null;
     }
 
     myInterAd1.show();
-    myInterAd1 = null;
   }
 
   Widget indoorTemp() {

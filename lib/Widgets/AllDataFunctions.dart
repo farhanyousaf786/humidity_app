@@ -11,12 +11,12 @@ const apiKey = 'dd6359b8920c1a71d2561dc152d6ad3f';
 
 
 class AllFunctions {
-   double latitude;
-   double longitude;
-   String adress;
-   double insideTemperatureC;
-   double insideTemperatureF;
-  dynamic coordinates;
+   late double latitude;
+  late double longitude;
+  late String adress;
+  late double insideTemperatureC;
+  late double insideTemperatureF;
+  late dynamic coordinates;
 
   Future<dynamic> getLocationWeather() async {
     Location location = Location();
